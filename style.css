@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #17202a;
+}
+
+header {
+    height: 65px;
+    background: #102a43;
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 25px;
+    gap: 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header span {
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+
+/* Controls */
+
+.controls {
+    background: white;
+
+    padding: 15px 20px;
+
+    display: flex;
+    align-items: end;
+    gap: 15px;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    position: relative;
+    z-index: 1000;
+}
+
+.controls div {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.controls input {
+    width: 140px;
+    padding: 9px;
+
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+
+    padding: 10px 15px;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#searchBtn {
+    background: #1976d2;
+    color: white;
+}
+
+#mapLocationBtn {
+    background: #e8eef3;
+    color: #17202a;
+}
+
+
+/* Map */
+
+#map {
+    height: 650px;
+    width: 100%;
+}
+
+
+/* Legend */
+
+.legend {
+    position: absolute;
+
+    bottom: 30px;
+    left: 20px;
+
+    z-index: 1000;
+
+    background: white;
+
+    padding: 15px 18px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.legend h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.legend div {
+    margin: 7px 0;
+    font-size: 14px;
+}
+
+.legend-symbol {
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+
+    margin-right: 8px;
+}
+
+
+/* Square = present */
+
+.present {
+    background: #1976d2;
+}
+
+
+/* Triangle = historical */
+
+.historical {
+    width: 0;
+    height: 0;
+
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 14px solid #e53935;
+}
+
+
+/* Current well */
+
+.current {
+    background: #111;
+    border-radius: 50%;
+}
+
+
+/* Information panel */
+
+.well-info {
+
+    position: absolute;
+
+    right: 25px;
+    top: 150px;
+
+    width: 330px;
+
+    background: white;
+
+    z-index: 2000;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.hidden {
+    display: none;
+}
+
+#closeInfo {
+
+    position: absolute;
+
+    right: 10px;
+    top: 8px;
+
+    background: none;
+
+    font-size: 25px;
+
+    padding: 2px 8px;
+}
+
+.well-info h2 {
+    margin-top: 0;
+}
+
+.event {
+    padding: 10px;
+
+    margin-top: 8px;
+
+    background: #f4f6f8;
+
+    border-left: 4px solid #e53935;
+}

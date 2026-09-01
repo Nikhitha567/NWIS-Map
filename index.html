@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NWIS - Nearby Wells Intelligence</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>NWIS</h1>
+        <span>Nearby Wells Intelligence System</span>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+
+        <div>
+            <label>Latitude</label>
+            <input type="number" id="latitude" value="27.4728" step="0.0001">
+        </div>
+
+        <div>
+            <label>Longitude</label>
+            <input type="number" id="longitude" value="94.9123" step="0.0001">
+        </div>
+
+        <div>
+            <label>Radius (km)</label>
+            <input type="number" id="radius" value="10" min="1">
+        </div>
+
+        <button id="searchBtn">SEARCH</button>
+        <button id="mapLocationBtn">USE MAP LOCATION</button>
+
+    </div>
+
+    <!-- Main map -->
+    <div id="map"></div>
+
+    <!-- Legend -->
+    <div class="legend">
+
+        <h3>Legend</h3>
+
+        <div>
+            <span class="legend-symbol current"></span>
+            Current Well
+        </div>
+
+        <div>
+            <span class="legend-symbol present"></span>
+            Present Well
+        </div>
+
+        <div>
+            <span class="legend-symbol historical"></span>
+            Historical Well
+        </div>
+
+    </div>
+
+    <!-- Well information -->
+    <div id="wellInfo" class="well-info hidden">
+
+        <button id="closeInfo">×</button>
+
+        <div id="wellContent"></div>
+
+    </div>
+
+
+    <!-- Leaflet JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
