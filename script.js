@@ -135,7 +135,7 @@ let currentMarker = null;
 let radiusCircle = null;
 
 
-function createCurrentWell(lat, lng) {
+function createCurrentLocation(lat, lng) {
 
     if (currentMarker) {
         map.removeLayer(currentMarker);
@@ -359,30 +359,87 @@ document
     .getElementById("searchBtn")
     .addEventListener("click", function() {
 
-        const lat = Number(
-            document.getElementById("latitude").value
-        );
+        const latInput =
+            document.getElementById("latitude").value.trim();
 
-        const lng = Number(
-            document.getElementById("longitude").value
-        );
+        const lngInput =
+            document.getElementById("longitude").value.trim();
 
-        const radius = Number(
-            document.getElementById("radius").value
-        );
+        const wellId =
+            document.getElementById("wellId").value.trim().toUpperCase();
+
+        const radius =
+            Number(document.getElementById("radius").value);
+
+
+        // Check radius
+        if (!Number.isFinite(radius) || radius <= 0) {
+            alert("Please enter a valid radius.");
+            return;
+        }
+
+
+        // OPTION 1: Search by Well ID
+        if (wellId !== "") {
+
+            const well = wells.find(function(w) {
+                return w.id.toUpperCase() === wellId;
+            });
+
+
+            if (!well) {
+                alert("Well ID does not exist.");
+                return;
+            }
+
+
+            currentLat = well.lat;
+            currentLng = well.lng;
+
+
+            document.getElementById("latitude").value =
+                well.lat.toFixed(4);
+
+            document.getElementById("longitude").value =
+                well.lng.toFixed(4);
+
+
+            map.setView(
+                [well.lat, well.lng],
+                12
+            );
+
+
+            createCurrentLocation(
+                well.lat,
+                well.lng
+            );
+
+
+            showNearbyWells(
+                well.lat,
+                well.lng
+            );
+
+            return;
+        }
+
+
+        // OPTION 2: Search by Latitude + Longitude
+
+        const lat = Number(latInput);
+        const lng = Number(lngInput);
 
 
         if (
             !Number.isFinite(lat) ||
             !Number.isFinite(lng) ||
-            !Number.isFinite(radius) ||
-            radius <= 0 ||
             lat < -90 ||
             lat > 90 ||
             lng < -180 ||
             lng > 180
         ) {
-            alert("Please enter valid coordinates and radius.");
+            alert("Please enter valid latitude and longitude.");
             return;
         }
 
@@ -397,7 +454,7 @@ document
         );
 
 
-        createCurrentWell(
+        createCurrentLocation(
             lat,
             lng
         );
@@ -427,7 +484,7 @@ map.on("click", function(e) {
     currentLng = lng;
 
 
-    createCurrentWell(
+    createCurrentLocation(
         lat,
         lng
     );
@@ -454,7 +511,7 @@ document
     .getElementById("mapLocationBtn")
     .addEventListener("click", function() {
 
-        createCurrentWell(
+        createCurrentLocation(
             currentLat,
             currentLng
         );
@@ -466,7 +523,7 @@ document
     });
 
 
-createCurrentWell(
+createCurrentLocation(
     currentLat,
     currentLng
 );
